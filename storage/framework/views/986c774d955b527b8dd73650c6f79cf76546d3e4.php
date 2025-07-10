@@ -1,0 +1,46 @@
+
+<?php $__env->startSection('title', 'Home'); ?>
+<?php $__env->startSection('conteudo'); ?>
+
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <?php $__currentLoopData = $produtos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $produto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="<?php echo e(asset('assets/images/image.png')); ?>" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder"><?php echo e($produto->name); ?></h5>
+                                <!-- Product price-->
+                                Kz <?php echo e(number_format($produto->preco, 2, ',', '.')); ?>
+
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark" href="<?php echo e(route('site.details', $produto->slug)); ?>">Ver Detalhes</a></div>
+                        </div>
+
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark" href="#">Adicionar ao carrinho</a></div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>            
+        </div>
+
+        <div class="row center">
+            <?php echo e($produtos->links()); ?>
+
+        </div>
+
+    </div>
+</section>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('site.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\ecommerce\resources\views/site/home.blade.php ENDPATH**/ ?>
